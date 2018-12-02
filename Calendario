@@ -1,0 +1,114 @@
+<html>
+	<body>
+		
+		
+		<?php
+		/* ----------------------------------------------------------------
+		|	Diego Porta Martínez. Martes 9 de octubre de 2018. Version 1  |
+		*-----------------------------------------------------------------*/
+		//Comezará o lunes e rematará según os días especificados.
+		echo '<style type="text/css">
+			table {
+				width: 60%;
+				height: 60%;
+					
+			}
+			tr, td {
+				text-align: left;
+				vertical-align: top;
+			}
+			td {
+				background: #01A9D0;
+			}
+			td#dias {
+				background: white;
+			}
+			td#finsem {
+				background: #045FB4;
+				color: white;
+			}
+		</style>';
+
+	
+		echo '<table>' ;
+		echo '	<tr>
+				<td id="dias">Luns</td>
+				<td id="dias">Martes</td>
+				<td id="dias">Miercoles</td>
+				<td id="dias">Jueves</td>
+				<td id="dias">Viernes</td>
+				<td id="dias">Sabado</td>
+				<td id="dias">Domingo</td></tr>
+			
+			</tr>';
+		// Creamos 3 variables
+		$diainicial = 1; //Primer dia del mes y contador del dia
+		$diatotal = 31; // Días totales
+		$semana = 0 ; //Contador de la semana
+	
+		while ($diainicial <= $diatotal) { //Se tiene que ejecutar mientras $diainial sea menos o igual que el dia que le pongamos de máximo
+			if ($semana == 0){ //Si es la primera semana, tenemos que crear una fila para introducir las columnas necesarias
+				echo '<tr>';
+			} 
+			if (($semana == 5) || ($semana == 6)) { //Con el fin de cambiar el fondo de las celdas del fin de semana 
+				echo '<td id="finsem">' . $diainicial . '</td>'; // Añadimos un id al td para poder editarlo en el estilo CSS
+			} else { // Si no cumple ninguna de las condiciones anteriores que añada un día normal
+				echo '<td>' . $diainicial . '</td>';
+			}
+
+			$diainicial++; //Le sumamos uno al dia
+			$semana++; //Le sumamos uno a la semana
+
+			if ($semana == 7) { //El 6 será el ultimo dia de la semana, al llegar a 7 tendemos que cerrar el <tr>
+				echo '</tr>';
+				$semana = 0;
+			}
+		}	
+		echo '</table>';
+
+
+		
+
+	
+		?>
+	
+	</body>
+	<!--
+	Otra forma en la que también se puede hacer, comento esta para que le eches un vistazo pero considero que la otra forma es más limpia.
+	echo '<table>' ;
+		echo '	<tr>
+				<td id="dias">Luns</td>
+				<td id="dias">Martes</td>
+				<td id="dias">Miercoles</td>
+				<td id="dias">Jueves</td>
+				<td id="dias">Viernes</td>
+				<td id="dias">Sabado</td>
+				<td id="dias">Domingo</td></tr>
+			
+			</tr>';
+
+		$diainicial = 1;
+		$diatotal = 31;
+		$cont = 0 ;
+		for ($diainicial; $diainicial <= $diatotal; $diainicial++) { //Haremos un bucle para que se ejecute mientras el dia inicial sea menor o igual que el dia total, que es el numero de dias del mes
+			for ($i = 1;$i <= 7;$i++) { //Son los dias de la semana
+				$cont = $cont + 1;
+				if ($i == 1) { // Si es el primer dia añadiremos una fila 
+					echo '<tr>';
+				};
+				echo '<td>' . $cont . '</td>';	//añadimos el dia de la semana.
+				if ( $i == 7) { //llegados al ultimo dia de la semana cerramos el tr
+					echo '</tr>';
+				}
+				if ($cont == $diatotal) { //Cuando llegue al límete sal del bucle
+					break;
+				}
+			}
+			if ($cont == $diatotal) { //Volver a repetir el paso anterior para cerrar el bucle definitivamente
+				break;
+			}
+			
+		}	
+		echo '</table>';
+-->
+</html>
